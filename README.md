@@ -53,3 +53,13 @@ The user interface is themed with a villainous dark mode featuring:
 - A dark background with contrasting red and white elements.
 - Stylish buttons and pagination controls.
 - Intuitive table layouts that ensure all important information is clearly presented.
+
+### Installation
+
+1. Clone the repository to your local machine:
+    ```bash
+    git clone https://learn.zone01kisumu.ke/git/hokwach/sortable.git
+    ```
+2.  Open the index.html file in any modern web browser.
+
+3. No external dependencies are needed—everything is written in vanilla HTML, CSS, and JavaScript.
