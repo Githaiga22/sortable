@@ -73,3 +73,19 @@ The user interface is themed with a villainous dark mode featuring:
 - Sort: Click on any table header to sort the data by that column.
 - Pagination: Use the page size dropdown to select how many heroes are displayed per page. Navigate between pages using the pagination buttons.
 - Detail View: Click on a hero's icon to open a detailed view modal with a larger image.
+
+### Code Snippets
+
+Here’s a brief overview of how the application works:
+
+1. fetching data
+```bash
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(apiData => {
+        data = apiData;
+        filteredData = data;
+        sortData('name', false);
+        displayPage(currentPage);
+    });
+```
