@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,11 +47,14 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
         }
 
-        table, th, td {
+        table,
+        th,
+        td {
             border: 2px solid #e50914;
         }
 
-        th, td {
+        th,
+        td {
             padding: 15px;
             text-align: left;
             font-size: 1.1rem;
@@ -95,7 +99,8 @@
         }
 
         /* Footer and extra details */
-        footer,h3 {
+        footer,
+        h3 {
             margin-top: 40px;
             color: #999;
             font-size: 0.8rem;
@@ -107,58 +112,65 @@
         }
 
         /* Modal styling */
-#modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 100; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
-}
+        #modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            z-index: 100;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Black w/ opacity */
+        }
 
-/* Modal content box - larger size */
-#modal-content {
-    background-color: #333;
-    margin: 10% auto; /* 10% from the top, centered horizontally */
-    padding: 30px;
-    border: 2px solid #e50914;
-    width: 500px; /* Increased width */
-    text-align: center;
-    color: #f8f8f2;
-    border-radius: 10px;
-}
+        /* Modal content box - larger size */
+        #modal-content {
+            background-color: #333;
+            margin: 10% auto;
+            /* 10% from the top, centered horizontally */
+            padding: 30px;
+            border: 2px solid #e50914;
+            width: 500px;
+            /* Increased width */
+            text-align: center;
+            color: #f8f8f2;
+            border-radius: 10px;
+        }
 
-/* Modal image - larger size */
-#modal-content img {
-    width: 200px; /* Increased image size */
-    height: 200px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
+        /* Modal image - larger size */
+        #modal-content img {
+            width: 200px;
+            /* Increased image size */
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
 
-/* Close button */
-.close {
-    color: #e50914;
-    float: right;
-    font-size: 32px; /* Slightly larger close button */
-    font-weight: bold;
-}
+        /* Close button */
+        .close {
+            color: #e50914;
+            float: right;
+            font-size: 32px;
+            /* Slightly larger close button */
+            font-weight: bold;
+        }
 
-.close:hover,
-.close:focus {
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-}
-
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body>
     <h1>My Kill List</h1>
-    <h3>I might sell this to Thanos  or Ultron</h3>
+    <h3>I might sell this to Thanos or Ultron</h3>
 
     <!-- Page Size Selection -->
     <label for="page-size">Select Page Size:</label>
@@ -173,20 +185,20 @@
     <!-- Table for Displaying Data -->
     <table>
         <thead>
-    <tr>
-        <th data-sort="images.xs">Icon</th>
-        <th data-sort="name">Name</th>
-        <th data-sort="biography.fullName">Full Name</th>
-        <th data-sort="powerstats">Powerstats</th>
-        <th data-sort="appearance.race">Race</th>
-        <th data-sort="appearance.gender">Gender</th>
-        <th data-sort="appearance.height">Height</th>
-        <th data-sort="appearance.weight">Weight</th>
-        <th data-sort="biography.placeOfBirth">Place of Birth</th>
-        <th data-sort="biography.alignment">Alignment</th>
-        
-    </tr>
-</thead>
+            <tr>
+                <th data-sort="images.xs">Icon</th>
+                <th data-sort="name">Name</th>
+                <th data-sort="biography.fullName">Full Name</th>
+                <th data-sort="powerstats">Powerstats</th>
+                <th data-sort="appearance.race">Race</th>
+                <th data-sort="appearance.gender">Gender</th>
+                <th data-sort="appearance.height">Height</th>
+                <th data-sort="appearance.weight">Weight</th>
+                <th data-sort="biography.placeOfBirth">Place of Birth</th>
+                <th data-sort="biography.alignment">Alignment</th>
+
+            </tr>
+        </thead>
         <tbody id="data-table-body"></tbody>
     </table>
 
@@ -201,11 +213,12 @@
             <p id="modal-name"></p>
         </div>
     </div>
-    
+
     <footer>
         <p>Enemies will fall one by one... who's next?</p>
     </footer>
 
     <script src="app.js"></script> <!-- Link to your JavaScript file -->
 </body>
+
 </html>
