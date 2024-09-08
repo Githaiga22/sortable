@@ -109,3 +109,15 @@ fetch(apiUrl)
     });
 }
 ```
+ 3, Sorting Logic
+ ```bash
+ function sortData(column, ascending = true) {
+    data.sort((a, b) => {
+        let valueA = getNestedProperty(a, column);
+        let valueB = getNestedProperty(b, column);
+        // Sorting logic for strings and numeric values
+    });
+    displayPage(currentPage);
+}
+```
+
