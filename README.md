@@ -35,9 +35,9 @@ The application provides a search bar for filtering superheroes by name. The sea
 
 The table is sortable by any of its columns. You can sort data alphabetically or numerically by clicking on the column headers:
 
-    The first click sorts the column in ascending order.
-    The second click sorts it in descending order.
-    Consecutive clicks toggle between ascending and descending.
+- The first click sorts the column in ascending order.
+- The second click sorts it in descending order.
+- Consecutive clicks toggle between ascending and descending.
 
 Special handling is applied to columns like weight and height, where the values represent numeric data stored as strings (e.g., "100 kg" or "6 feet"). Missing values are always sorted last.
 6. Detail View
@@ -50,6 +50,6 @@ The layout is responsive and adapts to various screen sizes. The table and image
 
 The user interface is themed with a villainous dark mode featuring:
 
-    A dark background with contrasting red and white elements.
-    Stylish buttons and pagination controls.
-    Intuitive table layouts that ensure all important information is clearly presented.
+- A dark background with contrasting red and white elements.
+- Stylish buttons and pagination controls.
+- Intuitive table layouts that ensure all important information is clearly presented.
