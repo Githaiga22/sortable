@@ -77,6 +77,65 @@ function createPaginationControls() {
     }
 }
 
+
+function sortData(column, ascending = true) {
+    if (column === currentSortColumn) {
+        isAscending = !isAscending; // Toggle sort order
+    } else {
+        isAscending = ascending; // Reset to ascending order if a new column is sorted
+        currentSortColumn = column; // Update current sort column
+    }
+
+    data.sort((a, b) => {
+        let valueA = getNestedProperty(a, column);
+        let valueB = getNestedProperty(b, column);
+
+        // Handle missing values
+        const isValueAMissing = valueA === null || valueA === undefined || valueA === 'N/A' || valueA === '-' || valueA === '';
+        const isValueBMissing = valueB === null || valueB === undefined || valueB === 'N/A' || valueB === '-' || valueB === '';
+
+        if (isValueAMissing && isValueBMissing) return 0; // Both are missing, keep original order
+        if (isValueAMissing) return isAscending ? 1 : -1; // 'N/A', '-', or empty is always last
+        if (isValueBMissing) return isAscending ? -1 : 1; // 'N/A', '-', or empty is always last
+        if (column === 'biography.fullName') {
+            const isValueAEmpty = !valueA || valueA.trim() === '';
+            const isValueBEmpty = !valueB || valueB.trim() === '';
+            if (isValueAEmpty && isValueBEmpty) return 0;
+            if (isValueAEmpty) return isAscending ? 1 : -1;
+            if (isValueBEmpty) return isAscending ? -1 : 1;
+            valueA = valueA.trim().toLowerCase();
+            valueB = valueB.trim().toLowerCase();
+            return isAscending ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
+        }
+
+        // Handle numerical values for weight and height
+        if (column === 'appearance.weight') {
+            valueA = parseFloat(valueA[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]);
+            valueB = parseFloat(valueB[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]);
+        } else if (column === 'appearance.height') {
+            valueA = parseFloat(valueA[0].split(' ')[0]);
+            valueB = parseFloat(valueB[0].split(' ')[0]);
+        } else {
+            // Trim spaces for full name, place of birth, and alignment sorting
+            if (column === 'biography.placeOfBirth' || column === 'biography.alignment') {
+                valueA = valueA.trim();
+                valueB = valueB.trim();
+            }
+        }
+
+        // Compare values
+        if (typeof valueA === 'string' && typeof valueB === 'string') {
+            return isAscending ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
+        }
+
+        if (valueA < valueB) return isAscending ? -1 : 1;
+        if (valueA > valueB) return isAscending ? 1 : -1;
+        return 0;
+    });
+
+    displayPage(currentPage);
+}
+
 // Handle Page Size Change
 document.getElementById('page-size').addEventListener('change', (e) => {
     pageSize = e.target.value === 'all' ? data.length : parseInt(e.target.value);
