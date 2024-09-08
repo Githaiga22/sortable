@@ -1,4 +1,4 @@
-const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json'; // Replace with your actual API URL
+const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json';
 
 let data = [];
 let currentPage = 1;
