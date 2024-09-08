@@ -150,6 +150,19 @@ function addSortListeners() {
     });
 }
 
+function updateSortIndicators() {
+    const headers = document.querySelectorAll('th');
+    headers.forEach(header => {
+        const column = header.getAttribute('data-sort');
+        if (column === currentSortColumn) {
+            header.classList.add('sorted');
+            header.textContent = `${header.textContent.replace(' ▲', '').replace(' ▼', '')} ${isAscending ? '▲' : '▼'}`;
+        } else {
+            header.classList.remove('sorted');
+        }
+    });
+}
+
 // Handle Page Size Change
 document.getElementById('page-size').addEventListener('change', (e) => {
     pageSize = e.target.value === 'all' ? data.length : parseInt(e.target.value);
