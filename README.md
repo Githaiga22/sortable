@@ -127,7 +127,10 @@ fetch(apiUrl)
 - URL Modification: Implement search terms and filters in the URL to allow for sharing filtered/sorted views.
 - Enhanced Detail View: Show even more information in the modal view, such as power levels and backstory.
 
-
+## Authors
+- hokwach
+- aosindo
+- allkamau
 
 ## License
 
