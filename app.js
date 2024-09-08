@@ -135,6 +135,9 @@ function sortData(column, ascending = true) {
 
     displayPage(currentPage);
 }
+function getNestedProperty(obj, path) {
+    return path.split('.').reduce((current, key) => current && current[key], obj);
+}
 
 // Handle Page Size Change
 document.getElementById('page-size').addEventListener('change', (e) => {
