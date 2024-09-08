@@ -89,3 +89,23 @@ fetch(apiUrl)
         displayPage(currentPage);
     });
 ```
+ 2. Display Data in the Table
+ ```bash
+ function displayPage(page) {
+    const startIndex = (page - 1) * pageSize;
+    const paginatedData = filteredData.slice(startIndex, startIndex + pageSize);
+    
+    const tableBody = document.getElementById('data-table-body');
+    tableBody.innerHTML = '';
+    paginatedData.forEach(item => {
+        const row = `<tr>
+            <td><img src="${item.images.xs}" alt="Icon"></td>
+            <td>${item.name}</td>
+            <td>${item.biography.fullName || 'N/A'}</td>
+            <td>${formatPowerstats(item.powerstats)}</td>
+            ...
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+}
+```
