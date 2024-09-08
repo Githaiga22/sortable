@@ -63,3 +63,13 @@ The user interface is themed with a villainous dark mode featuring:
 2.  Open the index.html file in any modern web browser.
 
 3. No external dependencies are needed—everything is written in vanilla HTML, CSS, and JavaScript.
+
+## Usage
+### Running the App
+
+- Open the Application: Navigate to the location of the index.html file and open it in your browser.
+- View Superhero Data: Upon loading, the data will be fetched and displayed.
+- Search: Use the search bar to find specific superheroes by name.
+- Sort: Click on any table header to sort the data by that column.
+- Pagination: Use the page size dropdown to select how many heroes are displayed per page. Navigate between pages using the pagination buttons.
+- Detail View: Click on a hero's icon to open a detailed view modal with a larger image.
