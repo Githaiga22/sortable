@@ -208,6 +208,9 @@ function filterData(searchQuery) {
 
 // Search Input Event Listener
 document.getElementById('search').addEventListener('input', (e) => {
+    if (e.target.value === ''){
+        window.location.reload()
+    }
     filterData(e.target.value);
 });
 
