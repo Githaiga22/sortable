@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villain's Kill List</title>
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #1c1c1c;
+            color: #f8f8f2;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #e50914;
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px black;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        label {
+            font-size: 1.2rem;
+            color: #f8f8f2;
+        }
+
+        /* Select input styling */
+        select {
+            background-color: #333;
+            color: #f8f8f2;
+            border: 2px solid #e50914;
+            padding: 5px;
+            margin: 10px 0;
+            font-size: 1rem;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #2d2d2d;
+            margin: 20px 0;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        table, th, td {
+            border: 2px solid #e50914;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1rem;
+        }
+
+        th {
+            background-color: #333;
+            color: #e50914;
+            font-weight: bold;
+        }
+
+        td {
+            color: #f8f8f2;
+        }
+
+        /* Image styling for icons */
+        img {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #e50914;
+            border-radius: 50%;
+        }
+
+        /* Pagination buttons */
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination button {
+            background-color: #333;
+            color: #f8f8f2;
+            border: 2px solid #e50914;
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #e50914;
+            color: #fff;
+        }
+
+        /* Footer and extra details */
+        footer {
+            margin-top: 40px;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Hover effect on table rows */
+        tbody tr:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body>
+    <h1>Villain's Kill List</h1>
+
+    <!-- Page Size Selection -->
+    <label for="page-size">Select Page Size:</label>
+    <select id="page-size">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="all">All</option>
+    </select>
+
+    <!-- Table for Displaying Data -->
+    <table>
+        <thead>
+            <tr>
+                <th>Icon</th>
+                <th>Name</th>
+                <th>Full Name</th>
+                <th>Powerstats</th>
+                <th>Race</th>
+                <th>Gender</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Place of Birth</th>
+                <th>Alignment</th>
+            </tr>
+        </thead>
+        <tbody id="data-table-body"></tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination" id="pagination-controls"></div>
+
+    <footer>
+        <p>Enemies will fall one by one... who's next?</p>
+    </footer>
+
+    <script src="app.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
