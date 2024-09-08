@@ -1,5 +1,6 @@
 const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json';let data = [];
 let currentPage = 1;
+let filteredData = [];
 let pageSize = 20;
 let currentSortColumn = 'name'; // Set initial sort column to 'name'
 let isAscending = true; // Set initial sort order to ascending
@@ -11,6 +12,7 @@ function fetchData() {
         .then(apiData => {
             data = apiData; // Store the data globally
             isAscending = false; // Set initial sort order to descending
+            filteredData = data;
             sortData('name', false); // Sort the data initially by name in descending order
             displayPage(currentPage); // Display the first page of data
             createPaginationControls();
@@ -22,8 +24,8 @@ function fetchData() {
 // Display Data for the Current Page
 function displayPage(page) {
     const startIndex = (page - 1) * pageSize;
-    const endIndex = pageSize === 'all' ? data.length : startIndex + parseInt(pageSize);
-    const paginatedData = data.slice(startIndex, endIndex);
+    const endIndex = pageSize === 'all' ? filteredData.length: startIndex + parseInt(pageSize);
+    const paginatedData = filteredData.slice(startIndex, endIndex);
 
     const tableBody = document.getElementById('data-table-body');
     tableBody.innerHTML = '';
@@ -194,6 +196,19 @@ document.getElementById('page-size').addEventListener('change', (e) => {
     currentPage = 1; // Reset to first page
     displayPage(currentPage);
     createPaginationControls();
+});
+
+// Filter Data Based on Search Input
+function filterData(searchQuery) {
+    filteredData = data.filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    currentPage = 1; // Reset to the first page after search
+    displayPage(currentPage);
+    createPaginationControls();
+}
+
+// Search Input Event Listener
+document.getElementById('search').addEventListener('input', (e) => {
+    filterData(e.target.value);
 });
 
 // Fetch and display data when page loads
