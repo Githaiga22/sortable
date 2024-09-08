@@ -139,6 +139,17 @@ function getNestedProperty(obj, path) {
     return path.split('.').reduce((current, key) => current && current[key], obj);
 }
 
+function addSortListeners() {
+    const headers = document.querySelectorAll('th');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const column = header.getAttribute('data-sort');
+            sortData(column);
+            updateSortIndicators();
+        });
+    });
+}
+
 // Handle Page Size Change
 document.getElementById('page-size').addEventListener('change', (e) => {
     pageSize = e.target.value === 'all' ? data.length : parseInt(e.target.value);
