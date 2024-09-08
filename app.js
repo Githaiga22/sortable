@@ -30,7 +30,7 @@ function displayPage(page) {
 
     paginatedData.forEach(item => {
         const row = `<tr>
-            <td><img src="${item.images.xs}" alt="Icon" onclick="showModal('${item.images.xs}', '${item.name}')"></td>
+            <td><img src="${item.images.xs}" alt="Icon" onclick="showModal('${item.images.sm}', '${item.name}')"></td>
             <td>${item.name}</td>
             <td>${item.biography.fullName || 'N/A'}</td>
             <td>${formatPowerstats(item.powerstats)}</td>
