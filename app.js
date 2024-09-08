@@ -1,4 +1,5 @@
-const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json';let data = [];
+const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json'; 
+let data = [];
 let currentPage = 1;
 let filteredData = [];
 let pageSize = 20;
@@ -24,7 +25,7 @@ function fetchData() {
 // Display Data for the Current Page
 function displayPage(page) {
     const startIndex = (page - 1) * pageSize;
-    const endIndex = pageSize === 'all' ? filteredData.length: startIndex + parseInt(pageSize);
+    const endIndex = pageSize === 'all' ? filteredData.length : startIndex + parseInt(pageSize);
     const paginatedData = filteredData.slice(startIndex, endIndex);
 
     const tableBody = document.getElementById('data-table-body');
@@ -82,50 +83,31 @@ function createPaginationControls() {
 
 function sortData(column, ascending = true) {
     if (column === currentSortColumn) {
-        isAscending = !isAscending; // Toggle sort order
+        isAscending = !isAscending;
     } else {
-        isAscending = ascending; // Reset to ascending order if a new column is sorted
-        currentSortColumn = column; // Update current sort column
+        isAscending = ascending;
+        currentSortColumn = column;
     }
 
     data.sort((a, b) => {
         let valueA = getNestedProperty(a, column);
         let valueB = getNestedProperty(b, column);
 
-        // Handle missing values
         const isValueAMissing = valueA === null || valueA === undefined || valueA === 'N/A' || valueA === '-' || valueA === '';
         const isValueBMissing = valueB === null || valueB === undefined || valueB === 'N/A' || valueB === '-' || valueB === '';
 
-        if (isValueAMissing && isValueBMissing) return 0; // Both are missing, keep original order
-        if (isValueAMissing) return isAscending ? 1 : -1; // 'N/A', '-', or empty is always last
-        if (isValueBMissing) return isAscending ? -1 : 1; // 'N/A', '-', or empty is always last
-        if (column === 'biography.fullName') {
-            const isValueAEmpty = !valueA || valueA.trim() === '';
-            const isValueBEmpty = !valueB || valueB.trim() === '';
-            if (isValueAEmpty && isValueBEmpty) return 0;
-            if (isValueAEmpty) return isAscending ? 1 : -1;
-            if (isValueBEmpty) return isAscending ? -1 : 1;
-            valueA = valueA.trim().toLowerCase();
-            valueB = valueB.trim().toLowerCase();
-            return isAscending ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
-        }
+        if (isValueAMissing && isValueBMissing) return 0;
+        if (isValueAMissing) return 1;
+        if (isValueBMissing) return -1;
 
-        // Handle numerical values for weight and height
         if (column === 'appearance.weight') {
-            valueA = parseFloat(valueA[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]);
-            valueB = parseFloat(valueB[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]);
+            valueA = parseFloat(valueA[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]) || Infinity;
+            valueB = parseFloat(valueB[1].toLowerCase().replace(' kg', '').replace(' tons', '000').split(' ')[0]) || Infinity;
         } else if (column === 'appearance.height') {
-            valueA = parseFloat(valueA[0].split(' ')[0]);
-            valueB = parseFloat(valueB[0].split(' ')[0]);
-        } else {
-            // Trim spaces for full name, place of birth, and alignment sorting
-            if (column === 'biography.placeOfBirth' || column === 'biography.alignment') {
-                valueA = valueA.trim();
-                valueB = valueB.trim();
-            }
+            valueA = valueA[0] === 'N/A' || valueA[0] === '-' ? (isAscending ? Infinity : -Infinity) : parseFloat(valueA[0].split(' ')[0]);
+            valueB = valueB[0] === 'N/A' || valueB[0] === '-' ? (isAscending ? Infinity : -Infinity) : parseFloat(valueB[0].split(' ')[0]);
         }
 
-        // Compare values
         if (typeof valueA === 'string' && typeof valueB === 'string') {
             return isAscending ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
         }
@@ -178,12 +160,12 @@ function showModal(imageSrc, name) {
 }
 
 // Close Modal
-document.querySelector('.close').onclick = function() {
+document.querySelector('.close').onclick = function () {
     document.getElementById('modal').style.display = 'none';
 }
 
 // Close Modal when clicking outside of the modal content
-window.onclick = function(event) {
+window.onclick = function (event) {
     const modal = document.getElementById('modal');
     if (event.target == modal) {
         modal.style.display = 'none';
@@ -208,7 +190,7 @@ function filterData(searchQuery) {
 
 // Search Input Event Listener
 document.getElementById('search').addEventListener('input', (e) => {
-    if (e.target.value === ''){
+    if (e.target.value === '') {
         window.location.reload()
     }
     filterData(e.target.value);
