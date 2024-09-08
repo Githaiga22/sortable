@@ -30,7 +30,7 @@ function displayPage(page) {
 
     paginatedData.forEach(item => {
         const row = `<tr>
-            <td><img src="${item.images.xs}" alt="Icon"></td>
+            <td><img src="${item.images.xs}" alt="Icon" onclick="showModal('${item.images.xs}', '${item.name}')"></td>
             <td>${item.name}</td>
             <td>${item.biography.fullName || 'N/A'}</td>
             <td>${formatPowerstats(item.powerstats)}</td>
@@ -161,6 +161,31 @@ function updateSortIndicators() {
             header.classList.remove('sorted');
         }
     });
+}
+
+// Modal Functionality
+function showModal(imageSrc, name) {
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalName = document.getElementById('modal-name');
+
+    modalImage.src = imageSrc;
+    modalName.textContent = name;
+
+    modal.style.display = 'block';
+}
+
+// Close Modal
+document.querySelector('.close').onclick = function() {
+    document.getElementById('modal').style.display = 'none';
+}
+
+// Close Modal when clicking outside of the modal content
+window.onclick = function(event) {
+    const modal = document.getElementById('modal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
 }
 
 // Handle Page Size Change
