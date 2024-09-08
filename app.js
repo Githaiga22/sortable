@@ -27,7 +27,7 @@ function displayPage(page) {
 
     paginatedData.forEach(item => {
         const row = `<tr>
-            <td><img src="${item.images.xs}" alt="Icon"></td>
+            <td><img src="${item.images.sm}" alt="Icon"></td>
             <td>${item.name}</td>
             <td>${item.biography.fullName}</td>
             <td>${formatPowerstats(item.powerstats)}</td>
