@@ -1,8 +1,8 @@
-const apiUrl = 'https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json';
-
 let data = [];
 let currentPage = 1;
 let pageSize = 20;
+let currentSortColumn = 'name'; // Set initial sort column to 'name'
+let isAscending = true; // Set initial sort order to ascending
 
 // Fetch Data from API
 function fetchData() {
@@ -10,8 +10,11 @@ function fetchData() {
         .then(response => response.json())
         .then(apiData => {
             data = apiData; // Store the data globally
+            isAscending = false; // Set initial sort order to descending
+            sortData('name', false); // Sort the data initially by name in descending order
             displayPage(currentPage); // Display the first page of data
             createPaginationControls();
+            addSortListeners();
         })
         .catch(error => console.error('Error fetching data:', error));
 }
@@ -29,7 +32,7 @@ function displayPage(page) {
         const row = `<tr>
             <td><img src="${item.images.xs}" alt="Icon"></td>
             <td>${item.name}</td>
-            <td>${item.biography.fullName}</td>
+            <td>${item.biography.fullName || 'N/A'}</td>
             <td>${formatPowerstats(item.powerstats)}</td>
             <td>${item.appearance.race || 'N/A'}</td>
             <td>${item.appearance.gender || 'N/A'}</td>
@@ -40,6 +43,8 @@ function displayPage(page) {
         </tr>`;
         tableBody.innerHTML += row;
     });
+
+    updateSortIndicators();
 }
 
 // Format Powerstats
