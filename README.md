@@ -120,4 +120,9 @@ fetch(apiUrl)
     displayPage(currentPage);
 }
 ```
+### Future Enhancements
+#### Bonus Features
 
+- Custom Search Operators: Include, exclude, fuzzy search, and numeric comparisons for fields like weight and height.
+- URL Modification: Implement search terms and filters in the URL to allow for sharing filtered/sorted views.
+- Enhanced Detail View: Show even more information in the modal view, such as power levels and backstory.
