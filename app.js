@@ -57,9 +57,16 @@ function createPaginationControls() {
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement('button');
         button.textContent = i;
+
+        if (i === currentPage) {
+            button.style.backgroundColor = '#8B0000'; // Dark red background for the current page
+            button.style.color = '#fff'; // White text for the current page
+        }
+
         button.addEventListener('click', () => {
             currentPage = i;
             displayPage(currentPage);
+            createPaginationControls();
         });
         paginationControls.appendChild(button);
     }
